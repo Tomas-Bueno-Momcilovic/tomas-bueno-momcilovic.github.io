@@ -1,102 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<title>Tomas Bueno Momčilović</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Short one‑line description of you / your work." />
+  <meta charset="utf-8" />
+  <title>Tomas Bueno Momčilović</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Short one‑line description of you / your work." />
 
 
-<!-- Styles -->
-<link href="styles/main_index.css" rel="stylesheet" />
+  <!-- Styles -->
+  <link href="styles/main_index.css" rel="stylesheet" />
 
 
-<!-- Favicon (optional) -->
- <link rel="icon" href="img/favicon.png">
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="img/favicon.png">
+
+  <!-- Leaflet (map library) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 
 </head>
 
 
 <body>
-<div class="content">
-<!-- Header -->
-<div class="header-wrapper">
-<header class="container">
-<a class="brand" href="#top">Tomas Bueno Momčilović</a>
-<nav class="nav">
-<a href="#about">About</a>
-<a href="#work">Work</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
-</div>
+  <div class="content">
+    <!-- Header -->
+    <div class="header-wrapper">
+      <header class="container">
+        <a class="brand" href="#top">Tomas Bueno Momčilović</a>
+        <nav class="nav">
+          <!-- <a href="#about">About</a> 
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a> -->
+        </nav>
+      </header>
+    </div>
 
 
-<!-- Main -->
-<main id="top" class="main-text">
-<section id="about" class="about">
-<div class="about-text">
-<p>
-I’m a <em>Scientific Researcher</em> at the fortiss research institute, and a <em>PhD candidate</em> at the Technical University of Munich, Chair of Software and Systems Engineering. 
-</p>
-<p>My research is focused on the intersection of assurance, knowledge representation & reasoning on one side, and the software, artificial intelligence and hybrid systems on the other.</p>
-<p>
-This website is a clearinghouse for my work and ideas. I try to make all my publications available on arXiv and ResearchGate.
-</p>
-</div>
-<aside class="about-aside">
+    <!-- Main -->
+    <main id="top" class="main-text">
+      <section id="about" class="about">
+        <div class="about-text">
+          <p>
+            I’m a <em>Scientific Researcher</em> at the fortiss research institute, and a <em>PhD candidate</em> at the
+            Technical University of Munich, Chair of Software and Systems Engineering.
+          </p>
+          <p>My research lies at the intersection of assurance, knowledge representation & reasoning on one side, and
+            the software, artificial intelligence & hybrid systems on the other. I'm also interested in other properties
+            (alignment, regulatory compliance, trustworthiness, adversarial robustness) related to novel architectures
+            (foundation models, compound AI, neurosymbolic AI). </p>
+          <p>
+            This website is a clearinghouse for my work and ideas. I try to make all my publications available on arXiv
+            and ResearchGate. Any comments, reviews, critiques, or objections are invited and should be sent to me by
+            e-mail.
+          </p>
+        </div>
+        <aside class="about-aside">
 
-<ul class="quicklinks">
-<li><a href="https://github.com/tomas-bueno-momcilovic" class="link-icon"><img src="https://cdn.simpleicons.org/github/000000" alt="" width="18" height="18">GitHub</a></li>
-<li><a href="https://www.linkedin.com/in/tomas-bueno-momcilovic/" class="link-icon"><img src="https://cdn.simpleicons.org/linkedin/000000" alt="" width="18" height="18">LinkedIn</a></li>
-<li><a href="https://scholar.google.com/citations?user=gGUDZvEAAAAJ" class="link-icon"><img src="https://cdn.simpleicons.org/googlescholar/000000" alt="" width="18" height="18">Google Scholar</a></li>
-<li><a href="https://www.researchgate.net/profile/Tomas_Bueno_Momcilovic" class="link-icon"><img src="https://cdn.simpleicons.org/researchgate/000000" alt="" width="18" height="18">ResearchGate</a></li>
-</ul>
-</aside>
-</section>
-
-
-<section id="work" class="papers">
-<div class="papers-block">
-<div class="section-label--right">Selected Work</div>
-
-
-<div class="section-item">
-<div class="paper-title">
-<b><a href="#">Project or Paper Title</a></b>
-</div>
-<div class="paper-misc">
-One‑sentence description with a <a href="#">link</a>.
-</div>
-</div>
+          <ul class="quicklinks">
+            <li><a href="https://www.linkedin.com/in/tomas-bueno-momcilovic/" target="_blank" rel="noopener noreferrer" class="link-icon">LinkedIn</a></li>
+            <li><a href="https://github.com/tomas-bueno-momcilovic" target="_blank" rel="noopener noreferrer" class="link-icon"><img
+                  src="https://cdn.simpleicons.org/github/000000" alt="" width="18" height="18">GitHub</a></li>
+            <li><a href="https://scholar.google.com/citations?user=gGUDZvEAAAAJ" target="_blank" rel="noopener noreferrer" class="link-icon"><img
+                  src="https://cdn.simpleicons.org/googlescholar/000000" alt="" width="18" height="18">Google
+                Scholar</a></li>
+            <li><a href="https://www.researchgate.net/profile/Tomas_Bueno_Momcilovic" target="_blank" rel="noopener noreferrer" class="link-icon"><img
+                  src="https://cdn.simpleicons.org/researchgate/000000" alt="" width="18" height="18">ResearchGate</a>
+            </li>
+            <li><a href="https://orcid.org/0000-0003-4503-2244" target="_blank" rel="noopener noreferrer" class="link-icon"><img
+                  src="https://cdn.simpleicons.org/orcid/000000" alt="" width="18" height="18">ORCID</a></li>
+          </ul>
+        </aside>
+      </section>
 
 
-<div class="section-item">
-<div class="paper-title">
-<b><a href="#">Another Highlight</a></b>
-</div>
-<div class="paper-misc">
-What it is, why it matters, and a <a href="#">demo</a>.
-</div>
-</div>
+      <section class="two-col">
+        <!-- Left: Selected Work -->
+        <div>
+          <section id="work" class="papers">
+            <div class="papers-block">
+              <div class="section-label--right">Selected Work</div>
 
 
-<p class="more-link"><a href="#">See more</a></p>
-</div>
-</section>
-
-</main>
-
-
-<footer class="site-footer">
-<p>© <span id="year"></span> Tomas Bueno Momčilović</p>
-</footer>
-</div>
+              <div class="section-item">
+                <div class="paper-title">
+                  <b><a href="https://w3id.org/OntoGSN" target="_blank" rel="noopener noreferrer">OntoGSN</a></b>
+                </div>
+                <div class="paper-misc">
+                  An Ontology for Semantic Management of Assurance Cases.
+                </div>
+              </div>
 
 
-<script>
-// tiny helper for the footer year
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+              <div class="section-item">
+                <div class="paper-title">
+                  <b><a href="#">Another Highlight</a></b>
+                </div>
+                <div class="paper-misc">
+                  What it is, why it matters, and a <a href="#">demo</a>.
+                </div>
+              </div>
+
+
+              <p class="more-link"><a href="#">See more</a></p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right: Map -->
+        <aside>
+          <section id="map-section" class="papers">
+            <div class="papers-block">
+              <div class="section-label--right">Field Visits Map</div>
+              <p class="updated"></p>
+              <div id="map"></div>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+
+    </main>
+
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Tomas Bueno Momčilović</p>
+    </footer>
+  </div>
+
+
+  <script>
+    // tiny helper for the footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    (async function () {
+      // Theme
+      const COLORS = {
+        conference: '#DC143C', // crimson
+        personal: '#326273', // payne's gray
+        research: '#E39774', // atomic orange
+        default: '#808080'  // fallback
+      };
+      const STROKE = '#FFFFFF'; // fat white outline
+
+      // Map
+      const map = L.map('map', { scrollWheelZoom: false }).setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      // Style helpers
+      const norm = v => String(v || '').trim().toLowerCase(); // normalize labels
+      function colorByCategory(cat) {
+        switch (norm(cat)) {
+          case 'conference': return COLORS.conference;
+          case 'personal': return COLORS.personal;
+          case 'research': return COLORS.research;
+          default: return COLORS.default;
+        }
+      }
+      function dotStyle(cat) {
+        return {
+          radius: 7,
+          fillColor: colorByCategory(cat),
+          color: STROKE,    // white outline
+          weight: 3,        // thicker stroke
+          opacity: 1,
+          fillOpacity: 0.95
+        };
+      }
+
+      // Load data (keeps your file:// fallback if you added the inline <script id="visits-data">)
+      async function loadVisits() {
+        try {
+          const r = await fetch('data/visits.geojson', { cache: 'no-store' });
+          if (r.ok) return await r.json();
+          throw new Error('HTTP ' + r.status);
+        } catch (e) {
+          const el = document.getElementById('visits-data');
+          if (el) return JSON.parse(el.textContent);
+          console.warn('No visits data found.');
+          return { type: 'FeatureCollection', features: [] };
+        }
+      }
+
+      const geojson = await loadVisits();
+
+      // Build layer
+      const layer = L.geoJSON(geojson, {
+        pointToLayer: (feature, latlng) => {
+          const cat = feature?.properties?.category;
+          return L.circleMarker(latlng, dotStyle(cat));
+        },
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const title = p.title ? `<strong>${p.title}</strong>` : '';
+          const meta = [p.category, p.date].filter(Boolean).join(' • ');
+          const notes = p.notes ? `<div style="margin-top:.3em">${p.notes}</div>` : '';
+          const notesHtml = notes ? `<div class="popup-notes">${notes}</div>` : '';
+          const link = p.link ? `<div style="margin-top:.3em"><a href="${p.link}" target="_blank" rel="noopener">More</a></div>` : '';
+          layer.bindPopup(`${title}${meta ? `<div>${meta}</div>` : ''}${notes}${link}`);
+        }
+      }).addTo(map);
+
+      if (geojson.features?.length) {
+        map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+      }
+
+      // Legend (bottom-right)
+      const legend = L.control({ position: 'topright' });
+      legend.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        const items = [
+          ['conference', COLORS.conference],
+          ['personal', COLORS.personal],
+          ['research', COLORS.research]
+        ];
+        div.innerHTML = `
+        <div class="legend-box">
+          <div class="legend-title">Categories</div>
+          ${items.map(([label, color]) => `
+            <div class="legend-row">
+              <span class="legend-dot" style="background:${color}; box-shadow: 0 0 0 3px ${STROKE} inset, 0 0 0 2px ${STROKE};"></span>
+              <span class="legend-label">${label}</span>
+            </div>
+          `).join('')}
+        </div>`;
+        return div;
+      };
+      legend.addTo(map);
+    })();
+  </script>
+
+
 </body>
+
 </html>
