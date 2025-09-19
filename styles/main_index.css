@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@media (max-width: 991px) {
+body { font-size: 15px; }
+}
+
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+img { max-width: 100%; height: auto; border: 0; }
+
+
+/* Layout */
+.content { width: 100%; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+
+/* Header */
+.header-wrapper {
+position: sticky; top: 0; z-index: 1000;
+background: var(--bg);
+border-bottom: 3px solid var(--accent);
+}
+header.container {
+display: flex; align-items: center; justify-content: space-between;
+min-height: 64px;
+}
+.brand {
+font-size: 22px; font-weight: 700; letter-spacing: 0.2px; color: var(--text);
+}
+.nav a { margin-left: 18px; font-weight: 600; color: var(--text); }
+.nav a:hover { color: var(--accent); }
+
+
+/* Main */
+.main-text { max-width: 1040px; margin: 0 auto; padding: 32px 20px 60px; }
+.h1 { font-size: 28px; margin: 0 0 8px; }
+
+
+.about { display: grid; grid-template-columns: 1fr 280px; gap: 24px; align-items: start; }
+@media (max-width: 767px) { .about { grid-template-columns: 1fr; } }
+.about-text { padding: 0; }
+.about-aside { padding: 0; }
+
+
+.quicklinks { list-style: none; margin: 0; padding: 0; }
+.quicklinks li { margin: 6px 0; }
+
+
+/* Papers */
+.papers { margin: 32px 0 0; }
+.papers .papers-block {
+position: relative; border-top: 1px dashed var(--line); padding-top: 28px; margin-top: 8px;
+}
+.section-label--right {
+position: absolute; top: -14px; right: 0;
+background: var(--accent); color: #fff; padding: 6px 12px; font-size: 13px; letter-spacing: 0.08em;
+}
+
+
+.section-item { display: flex; gap: 20px; align-items: flex-start; padding: 10px 0; }
+.section-item + .section-item { border-top: 1px solid var(--line); }
+.paper-title { flex: 0 0 40%; font-size: 16px; }
+.paper-misc { flex: 1; color: var(--muted); }
+
+
+.more-link { text-align: right; margin-top: 8px; }
+.updated { color: var(--muted); margin-top: 12px; }
+
+
+/* Utility highlight */
+.highlight {
+background: var(--accent-10);
+padding: 0 .2em; border-radius: 3px;
+}
+
+
+/* Footer */
+.site-footer {
+border-top: 1px solid var(--line); padding: 16px 20px; text-align: center; color: var(--muted);
+}
