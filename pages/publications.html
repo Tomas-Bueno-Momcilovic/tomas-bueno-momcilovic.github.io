@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Publications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../styles/main_index.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="header-wrapper">
+            <header class="container">
+                <a class="brand" href="../index.html">Tomas Bueno Momčilović</a>
+                <nav class="nav">
+                    <!-- <a href="../index.html">Home</a> -->
+                    <a href="publications.html">Publications</a> <!-- current page -->
+                </nav>
+            </header>
+        </div>
+
+        <section class="papers">
+            <div class="papers-block">
+                <div class="section-label--right">Publications</div>
+                <div id="pubs">Loading…</div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>© <span id="year"></span> Your Name</p>
+        </footer>
+    </div>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+
+<!-- Put libs BEFORE the renderer -->
+<script src="https://cdn.jsdelivr.net/npm/@citation-js/core@0.6.9/build/citation.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@citation-js/plugin-bibtex@0.6.9/build/plugin-bibtex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bibtex-parse-js@2.0.3/dist/bibtexParse.min.js"></script>
+
+<script>
+(async function () {
+  const el = document.getElementById('pubs');
+
+  // Pick correct path whether the page is / or /pages/
+  const BIB_PATH = location.pathname.includes('/pages/') ? '../data/papers.bib' : 'data/papers.bib';
+
+  // ---- Helpers ----
+  const first = v => Array.isArray(v) ? v[0] : v;
+  const text  = v => (typeof v === 'string') ? v
+                   : Array.isArray(v) ? v.filter(Boolean).join(' ')
+                   : (v && v.literal) ? v.literal
+                   : (v ?? '');
+  const getYearCSL = d => {
+    const dp = d?.issued?.['date-parts'];
+    if (Array.isArray(dp) && Array.isArray(dp[0]) && dp[0][0]) return dp[0][0];
+    return d?.issued?.year || d?.issued || '';
+  };
+
+  function sanitizeBib(bib) {
+    // strip BOM, normalize EOLs
+    if (bib.charCodeAt(0) === 0xFEFF) bib = bib.slice(1);
+    bib = bib.replace(/\r\n?/g, '\n');
+
+    // unify fancy quotes & dashes that sometimes confuse parsers
+    bib = bib.replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/[–—]/g, '-');
+
+    // remove @comment{...} and % line comments
+    bib = bib.replace(/@comment\s*{[^{}]*}/gi, '');
+    bib = bib.replace(/^[ \t]*%.*$/gm, '');
+
+    // drop huge/unnecessary fields that often contain unmatched braces
+    bib = bib.replace(/\n\s*(abstract|file|keywords)\s*=\s*{[^{}]*},?/gi, '\n');
+
+    // \url{...} -> url = {...}
+    bib = bib.replace(/url\s*=\s*\\url\s*{([^}]*)}/gi, 'url = {$1}');
+
+    // wrap bare month literals
+    bib = bib.replace(/month\s*=\s*([a-z]{3,})\b/gi, 'month = {$1}');
+
+    // ensure every entry has a key
+    let auto = 0;
+    bib = bib.replace(/@(\w+)\s*{\s*,/g, (m, t) => `@${t}{autoKey${++auto},`);
+
+    // remove trailing commas before closing braces: "...,\n}" -> "\n}"
+    bib = bib.replace(/,\s*}\s*$/gm, '\n}\n');
+
+    return bib;
+  }
+
+  // super-forgiving last-resort parser (regex-based)
+  function naiveParse(bib) {
+    const entries = [];
+    const re = /@(\w+)\s*{\s*([^,]+)\s*,([\s\S]*?)\n}\s*/g;
+    let m;
+    while ((m = re.exec(bib)) !== null) {
+      const body = m[3];
+      const tags = {};
+      body.replace(/^\s*([A-Za-z][A-Za-z0-9_-]*)\s*=\s*({([^{}]*|{[^}]*})*}|\"[^"]*\"|[^,\n]+)\s*,?/gm,
+        (_, k, v) => {
+          v = (v || '').trim();
+          if (v.startsWith('{') && v.endsWith('}')) v = v.slice(1, -1);
+          if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1);
+          tags[k.toLowerCase()] = v;
+          return '';
+        });
+      const title = tags.title || '(untitled)';
+      const authors = (tags.author || '')
+        .split(/\s+and\s+/i).map(s => s.trim()).filter(Boolean).join(', ');
+      const venue = tags.booktitle || tags.journal || tags.publisher || '';
+      const year = tags.year || '';
+      const url = tags.url || (tags.doi ? `https://doi.org/${tags.doi}` : '');
+      entries.push({ title, authors, venue, year, url });
+    }
+    return entries;
+  }
+
+  function render(items, sourceLabel) {
+    items.sort((a, b) => (String(b.year||'0').localeCompare(String(a.year||'0'))) || String(a.title).localeCompare(String(b.title)));
+
+  const lis = items.map(it => `
+    <li style="margin:6px 0;">
+      <span class="year-bracket">[${it.year || '—'}]</span>
+      <b>${it.title}</b><br>
+      <span style="color:var(--muted);">
+        ${it.authors}${it.venue ? ` — <i>${it.venue}</i>` : ''}
+      </span>
+      ${it.url ? ` · <a href="${it.url}" target="_blank" rel="noopener noreferrer">Link</a>` : ''}
+    </li>
+  `).join('');
+
+    document.getElementById('pubs').innerHTML = `<ul>${lis}</ul>`;
+    console.debug(`Rendered ${items.length} items via ${sourceLabel}`);
+  }
+
+  try {
+    const res = await fetch(BIB_PATH, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Fetch failed: HTTP ' + res.status);
+    let bib = await res.text();
+    bib = sanitizeBib(bib);
+
+    // Try Citation.js
+    try {
+      const Cite = window.Cite;
+      const csl = new Cite(bib).get({ type: 'json' });
+      const items = csl.map(d => {
+        const year   = getYearCSL(d) || 'In press';
+        const title  = text(first(d.title)) || '(untitled)';
+        const authors = (d.author || [])
+          .map(a => [a.given, a.family].filter(Boolean).join(' '))
+          .filter(Boolean).join(', ');
+        const venue  = text(first(d['container-title'] || d['collection-title'] || d.publisher || d['event'] || d['event-title']));
+        const url    = d.URL || (d.DOI ? `https://doi.org/${d.DOI}` : '');
+        return { year, title, authors, venue, url };
+      });
+      render(items, 'Citation.js');
+      return;
+    } catch (e1) {
+      console.warn('Citation.js parse failed:', e1);
+    }
+
+    // Fallback: bibtex-parse-js
+    try {
+      const parsed = bibtexParse.toJSON(bib);
+      const items = parsed.map(it => {
+        const t = it.entryTags || {};
+        const title = t.title || '(untitled)';
+        const authors = (t.author || '')
+          .split(/\s+and\s+/i).map(s => s.trim()).filter(Boolean).join(', ');
+        const venue = t.booktitle || t.journal || t.publisher || '';
+        const year = t.year || '';
+        const url = t.url || (t.doi ? `https://doi.org/${t.doi}` : '');
+        return { title, authors, venue, year, url };
+      });
+      render(items, 'bibtex-parse-js');
+      return;
+    } catch (e2) {
+      console.warn('bibtex-parse-js failed:', e2);
+    }
+
+    // Last resort: naive regex parser
+    const items = naiveParse(bib);
+    if (items.length) {
+      render(items, 'naive parser');
+    } else {
+      throw new Error('All parsers failed and naive parser found 0 entries.');
+    }
+  } catch (e) {
+    el.textContent = 'Failed to load publications.';
+    console.error('Publications error:', e);
+  }
+})();
+</script>
+
+</html>

@@ -149,3 +149,6 @@ border-top: 1px solid var(--line); padding: 16px 20px; text-align: center; color
     grid-template-columns: 1fr;
   }
 }
+
+#pubs ul { padding-left: 18px; }
+#pubs li { margin: 6px 0; }
