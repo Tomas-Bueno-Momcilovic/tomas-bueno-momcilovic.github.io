@@ -152,3 +152,17 @@ border-top: 1px solid var(--line); padding: 16px 20px; text-align: center; color
 
 #pubs ul { padding-left: 18px; }
 #pubs li { margin: 6px 0; }
+
+.term { border-bottom: 2px dotted var(--accent); cursor: help; }
+.tooltip {
+  position: absolute; z-index: 2000; max-width: 320px;
+  background: #fff; color: #000; border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 10px; box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  font-size: 14px; line-height: 1.4;
+}
+.tooltip .tip-title { font-weight: 700; margin-bottom: 4px; }
+.tooltip .tip-more { margin-top: 6px; }
+.tooltip .tip-addr { margin-top: 6px; color: var(--muted); }
+
+.link-icon { display: inline-flex; align-items: center; gap: 8px; color: var(--text); }
+.link-icon:hover { color: var(--accent); }
