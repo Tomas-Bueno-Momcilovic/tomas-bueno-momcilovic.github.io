@@ -1,0 +1,163 @@
+@prefix : <https://tomas-bueno-momcilovic.github.io/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://tomas-bueno-momcilovic.github.io/ontology#> .
+
+<https://tomas-bueno-momcilovic.github.io/ontology> rdf:type owl:Ontology .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#country-name
+<http://www.w3.org/2006/vcard/ns#country-name> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#locality
+<http://www.w3.org/2006/vcard/ns#locality> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#postal-code
+<http://www.w3.org/2006/vcard/ns#postal-code> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#street-address
+<http://www.w3.org/2006/vcard/ns#street-address> rdf:type owl:DatatypeProperty .
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/vcard/ns#Organization
+<http://www.w3.org/2006/vcard/ns#Organization> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#TUM_SSE
+:TUM_SSE rdf:type owl:NamedIndividual ,
+                  <http://www.w3.org/2006/vcard/ns#Organization> ;
+         <http://www.w3.org/2006/vcard/ns#country-name> "Germany" ;
+         <http://www.w3.org/2006/vcard/ns#locality> "Garching b. München" ;
+         <http://www.w3.org/2006/vcard/ns#postal-code> "85748" ;
+         <http://www.w3.org/2006/vcard/ns#street-address> "Boltzmannstraße 3" ;
+         <http://xmlns.com/foaf/0.1/homepage> "https://www.cs.cit.tum.de/en/sse/homepage/" ;
+         rdfs:label "TUM Chair of Software and Systems Engineering"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#adversarialRobustness
+:adversarialRobustness rdf:type owl:NamedIndividual ,
+                                <http://www.w3.org/2004/02/skos/core#Concept> ;
+                       rdfs:label "Adversarial Robustness"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#alignment
+:alignment rdf:type owl:NamedIndividual ,
+                    <http://www.w3.org/2004/02/skos/core#Concept> ;
+           rdfs:label "Alignment"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#artificialIntelligence
+:artificialIntelligence rdf:type owl:NamedIndividual ,
+                                 <http://www.w3.org/2004/02/skos/core#Concept> ;
+                        rdfs:label "Artificial Intelligence (AI)"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#assurance
+:assurance rdf:type owl:NamedIndividual ,
+                    <http://www.w3.org/2004/02/skos/core#Concept> ;
+           <http://www.w3.org/2004/02/skos/core#definition> "The process of establishing justifiable confidence in claims about some context-specific properties of a system based on evidence."@en ;
+           rdfs:label "Assurance"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#compoundAI
+:compoundAI rdf:type owl:NamedIndividual ,
+                     <http://www.w3.org/2004/02/skos/core#Concept> ;
+            rdfs:label "Compound AI"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#fortiss
+:fortiss rdf:type owl:NamedIndividual ,
+                  <http://www.w3.org/2006/vcard/ns#Organization> ;
+         <http://www.w3.org/2006/vcard/ns#country-name> "Germany"@en ;
+         <http://www.w3.org/2006/vcard/ns#locality> "Munich" ;
+         <http://www.w3.org/2006/vcard/ns#postal-code> 80805 ;
+         <http://www.w3.org/2006/vcard/ns#street-address> "Guerickestraße 25" ;
+         <http://xmlns.com/foaf/0.1/homepage> "https://www.fortiss.org/en/" ;
+         rdfs:comment "fortiss GmbH Research Institute of the Free State of Bavaria for software-intensive systems"@en ;
+         rdfs:label "fortiss"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#foundationModel
+:foundationModel rdf:type owl:NamedIndividual ,
+                          <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:label "Foundation Model"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#hybridSystem
+:hybridSystem rdf:type owl:NamedIndividual ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> ;
+              rdfs:label "Hybrid System"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#knowledgeRepresentation
+:knowledgeRepresentation rdf:type owl:NamedIndividual ,
+                                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+                         rdfs:label "Knowledge Representation"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#neurosymbolicAI
+:neurosymbolicAI rdf:type owl:NamedIndividual ,
+                          <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:label "Neurosymbolic AI"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#reasoning
+:reasoning rdf:type owl:NamedIndividual ,
+                    <http://www.w3.org/2004/02/skos/core#Concept> ;
+           rdfs:label "Reasoning"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#regulatoryCompliance
+:regulatoryCompliance rdf:type owl:NamedIndividual ,
+                               <http://www.w3.org/2004/02/skos/core#Concept> ;
+                      rdfs:label "Regulatory Compliance"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#software
+:software rdf:type owl:NamedIndividual ,
+                   <http://www.w3.org/2004/02/skos/core#Concept> ;
+          rdfs:label "Software"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#technicalUniversityMunich
+:technicalUniversityMunich rdf:type owl:NamedIndividual ,
+                                    <http://www.w3.org/2006/vcard/ns#Organization> ;
+                           rdfs:label "Technical University of Munich"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#trustworthiness
+:trustworthiness rdf:type owl:NamedIndividual ,
+                          <http://www.w3.org/2004/02/skos/core#Concept> ;
+                 rdfs:label "Trustworthiness"@en .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
