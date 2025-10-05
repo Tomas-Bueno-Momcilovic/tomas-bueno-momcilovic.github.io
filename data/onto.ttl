@@ -4,12 +4,45 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix schema: <https://schema.org/> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @base <https://tomas-bueno-momcilovic.github.io/ontology#> .
 
 <https://tomas-bueno-momcilovic.github.io/ontology> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/date
+<http://purl.org/dc/terms/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.opengis.net/ont/geosparql#asWKT
+<http://www.opengis.net/ont/geosparql#asWKT> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+<http://www.opengis.net/ont/geosparql#hasGeometry> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/addressCountry
+<https://schema.org/addressCountry> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/addressLocality
+<https://schema.org/addressLocality> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#wktLiteral
+<http://www.opengis.net/ont/geosparql#wktLiteral> rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
 
 #################################################################
 #    Data properties
@@ -43,6 +76,10 @@
 #    Classes
 #################################################################
 
+###  http://www.opengis.net/ont/geosparql#Geometry
+<http://www.opengis.net/ont/geosparql#Geometry> rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2004/02/skos/core#Concept
 <http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
 
@@ -70,6 +107,13 @@
 #    Individuals
 #################################################################
 
+###  https://tomas-bueno-momcilovic.github.io/ontology#OntoGSN
+:OntoGSN rdf:type owl:NamedIndividual ,
+                  <http://www.w3.org/2004/02/skos/core#Concept> ;
+         <http://www.w3.org/2004/02/skos/core#definition> "An ontology for semantic management of assurance cases."@en ;
+         rdfs:label "OntoGSN"@en .
+
+
 ###  https://tomas-bueno-momcilovic.github.io/ontology#TUM_SSE
 :TUM_SSE rdf:type owl:NamedIndividual ,
                   <http://www.w3.org/2006/vcard/ns#Organization> ;
@@ -79,7 +123,7 @@
          <http://www.w3.org/2006/vcard/ns#street-address> "Boltzmannstraße 3" ;
          <http://xmlns.com/foaf/0.1/homepage> "https://www.cs.cit.tum.de/en/sse/homepage/" ;
          rdfs:comment "Chair of Prof. Dr. Alexander Pretschner, TUM School of Computation, Information and Technology"@en ;
-         rdfs:label "TUM Chair of Software and Systems Engineering"@en .
+         rdfs:label "Chair of Software and Systems Engineering"@en .
 
 
 ###  https://tomas-bueno-momcilovic.github.io/ontology#adversarialRobustness
@@ -94,6 +138,14 @@
                     <http://www.w3.org/2004/02/skos/core#Concept> ;
            <http://www.w3.org/2004/02/skos/core#definition> "Ensuring AI systems act in accordance with human intentions and values, steering them towards desired goals rather than unintended ones."@en ;
            rdfs:label "alignment"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#arXiv
+:arXiv rdf:type owl:NamedIndividual ,
+                <http://www.w3.org/2006/vcard/ns#Organization> ;
+       <http://xmlns.com/foaf/0.1/homepage> "https://arxiv.org/search/cs?searchtype=author&query=tomas+bueno+momcilovic" ;
+       rdfs:comment "A free distribution service and an open-access archive for scholarly articles."@en ;
+       rdfs:label "arXiv"@en .
 
 
 ###  https://tomas-bueno-momcilovic.github.io/ontology#artificialIntelligence
@@ -111,11 +163,76 @@
            rdfs:label "assurance"@en .
 
 
+###  https://tomas-bueno-momcilovic.github.io/ontology#athens_greece_2024_06_02
+:athens_greece_2024_06_02 rdf:type owl:NamedIndividual ,
+                                   :ResearchVisit ;
+                          <http://purl.org/dc/terms/date> "2024-06-02"^^xsd:date ;
+                          <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                               <http://www.opengis.net/ont/geosparql#asWKT> "POINT(23.7275 37.9838)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                             ] ;
+                          rdfs:comment "Visited Ubitech in Chalandri (Athens), as part of the DUCA EU project staff exchanges."@en ;
+                          rdfs:label "Athens, Greece"@en ;
+                          <https://schema.org/addressCountry> "Greece" ;
+                          <https://schema.org/addressLocality> "Athens" .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#belgrade_serbia_1994
+:belgrade_serbia_1994 rdf:type owl:NamedIndividual ,
+                               :PersonalEntry ;
+                      <http://purl.org/dc/terms/date> "1994"^^xsd:date ;
+                      <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                           <http://www.opengis.net/ont/geosparql#asWKT> "POINT(20.4573 44.7872)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                         ] ;
+                      rdfs:comment "From here!"@en ;
+                      rdfs:label "Belgrade, Serbia"@en ;
+                      <https://schema.org/addressCountry> "Serbia" ;
+                      <https://schema.org/addressLocality> "Belgrade" .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#berlin_germany_2023_03_30
+:berlin_germany_2023_03_30 rdf:type owl:NamedIndividual ,
+                                    :Conference ;
+                           <http://purl.org/dc/terms/date> "2023-03-30"^^xsd:date ;
+                           <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                <http://www.opengis.net/ont/geosparql#asWKT> "POINT(13.405 52.52)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                              ] ;
+                           rdfs:comment "Participated in, and gave a talk at, the AI Safety Europe Retreat (AISER)."@en ;
+                           rdfs:label "Berlin, Germany"@en ;
+                           <https://schema.org/addressCountry> "Germany" ;
+                           <https://schema.org/addressLocality> "Berlin" .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#brussels_belgium_2024_10_01
+:brussels_belgium_2024_10_01 rdf:type owl:NamedIndividual ,
+                                      :Conference ;
+                             <http://purl.org/dc/terms/date> "2024-10-01"^^xsd:date ;
+                             <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                  <http://www.opengis.net/ont/geosparql#asWKT> "POINT(4.3572 50.8477)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                ] ;
+                             rdfs:comment "Gave a talk on LLMs and adversarial robustness at the ENISA Cyber Threat Intelligence Conference (2024)."@en ;
+                             rdfs:label "Brussels, Belgium"@en ;
+                             <https://schema.org/addressCountry> "Belgium" ;
+                             <https://schema.org/addressLocality> "Brussels" .
+
+
 ###  https://tomas-bueno-momcilovic.github.io/ontology#compoundAI
 :compoundAI rdf:type owl:NamedIndividual ,
                      <http://www.w3.org/2004/02/skos/core#Concept> ;
             <http://www.w3.org/2004/02/skos/core#definition> "A system that tackles AI tasks using multiple interacting components, including multiple calls to models, retrievers, or external tools."@en ;
             rdfs:label "compound AI"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#florence_italy_2024_09_17
+:florence_italy_2024_09_17 rdf:type owl:NamedIndividual ,
+                                    :Conference ;
+                           <http://purl.org/dc/terms/date> "2024-09-17"^^xsd:date ;
+                           <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                <http://www.opengis.net/ont/geosparql#asWKT> "POINT(11.2558 43.7696)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                              ] ;
+                           rdfs:comment "Gave a talk at the International Workshop on Artificial Intelligence Safety Engineering (WAISE; part of SAFECOMP 2024)."@en ;
+                           rdfs:label "Florence, Italy"@en ;
+                           <https://schema.org/addressCountry> "Italy" ;
+                           <https://schema.org/addressLocality> "Florence" .
 
 
 ###  https://tomas-bueno-momcilovic.github.io/ontology#fortiss
@@ -151,11 +268,50 @@
                          rdfs:label "knowledge representation"@en .
 
 
+###  https://tomas-bueno-momcilovic.github.io/ontology#munich_germany_2020
+:munich_germany_2020 rdf:type owl:NamedIndividual ,
+                              :PersonalEntry ;
+                     <http://purl.org/dc/terms/date> "2020-"^^xsd:date ;
+                     <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                          <http://www.opengis.net/ont/geosparql#asWKT> "POINT(11.582 48.1351)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                        ] ;
+                     rdfs:comment "Live and work here!"@en ;
+                     rdfs:label "Munich, Germany"@en ;
+                     <https://schema.org/addressCountry> "Germany" ;
+                     <https://schema.org/addressLocality> "Munich" .
+
+
 ###  https://tomas-bueno-momcilovic.github.io/ontology#neurosymbolicAI
 :neurosymbolicAI rdf:type owl:NamedIndividual ,
                           <http://www.w3.org/2004/02/skos/core#Concept> ;
                  <http://www.w3.org/2004/02/skos/core#definition> "An AI system that seeks to integrate neural network-based methods with symbolic knowledge-based approaches."@en ;
                  rdfs:label "neurosymbolic AI"@en .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#paderborn_germany_2023_09_18
+:paderborn_germany_2023_09_18 rdf:type owl:NamedIndividual ,
+                                       :Conference ;
+                              <http://purl.org/dc/terms/date> "2023-09-18"^^xsd:date ;
+                              <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                   <http://www.opengis.net/ont/geosparql#asWKT> "POINT(8.7575 51.7189)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                 ] ;
+                              rdfs:comment "Published and presented a paper at the Workshop on Current Information Security and Compliance Issues in Information Systems Research (Wirtschaftsinformatik conference, 2023)."@en ;
+                              rdfs:label "Paderborn, Germany"@en ;
+                              <https://schema.org/addressCountry> "Germany" ;
+                              <https://schema.org/addressLocality> "Paderborn" .
+
+
+###  https://tomas-bueno-momcilovic.github.io/ontology#paris_france_2023_03_08
+:paris_france_2023_03_08 rdf:type owl:NamedIndividual ,
+                                  :ResearchVisit ;
+                         <http://purl.org/dc/terms/date> "2023-03-08"^^xsd:date ;
+                         <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                              <http://www.opengis.net/ont/geosparql#asWKT> "POINT(2.3514 48.8575)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                            ] ;
+                         rdfs:comment "Plenary meeting with the colleagues from the Digital Innovation Hubs 4 AI (DIH4AI) EU project."@en ;
+                         rdfs:label "Paris, France"@en ;
+                         <https://schema.org/addressCountry> "France" ;
+                         <https://schema.org/addressLocality> "Paris" .
 
 
 ###  https://tomas-bueno-momcilovic.github.io/ontology#reasoning
@@ -172,6 +328,19 @@
                       rdfs:label "regulatory compliance"@en .
 
 
+###  https://tomas-bueno-momcilovic.github.io/ontology#santiago_de_compostela_spain_2024_10_19
+:santiago_de_compostela_spain_2024_10_19 rdf:type owl:NamedIndividual ,
+                                                  :Conference ;
+                                         <http://purl.org/dc/terms/date> "2024-10-19"^^xsd:date ;
+                                         <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                              <http://www.opengis.net/ont/geosparql#asWKT> "POINT(-8.5448 42.8782)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                            ] ;
+                                         rdfs:comment "Published and presented a paper at the International Workshop on AI Value Engineering and AI Compliance Mechanisms (VECOMP; part of ECAI 2024)."@en ;
+                                         rdfs:label "Santiago de Compostela, Spain"@en ;
+                                         <https://schema.org/addressCountry> "Spain" ;
+                                         <https://schema.org/addressLocality> "Santiago de Compostela" .
+
+
 ###  https://tomas-bueno-momcilovic.github.io/ontology#software
 :software rdf:type owl:NamedIndividual ,
                    <http://www.w3.org/2004/02/skos/core#Concept> ;
@@ -185,145 +354,89 @@
                            rdfs:label "Technical University of Munich"@en .
 
 
+###  https://tomas-bueno-momcilovic.github.io/ontology#the_hague_the_netherlands_2023_02_15
+:the_hague_the_netherlands_2023_02_15 rdf:type owl:NamedIndividual ,
+                                               :Conference ;
+                                      <http://purl.org/dc/terms/date> "2023-02-15"^^xsd:date ;
+                                      <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                           <http://www.opengis.net/ont/geosparql#asWKT> "POINT(4.3007 52.0705)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                         ] ;
+                                      rdfs:comment "Visited the Summit on Responsible Artificial Intelligence in the Military Domain (REAIM 2023)."@en ;
+                                      rdfs:label "The Hague, The Netherlands"@en ;
+                                      <https://schema.org/addressCountry> "The Netherlands" ;
+                                      <https://schema.org/addressLocality> "The Hague" .
+
+
 ###  https://tomas-bueno-momcilovic.github.io/ontology#trustworthiness
 :trustworthiness rdf:type owl:NamedIndividual ,
                           <http://www.w3.org/2004/02/skos/core#Concept> ;
                  <http://www.w3.org/2004/02/skos/core#definition> "The ability of AI to be fair, reliable, transparent, accountable, safe, and ethical."@en ;
                  rdfs:label "trustworthiness"@en .
 
-:xanthi_greece_2024_06_04 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Xanthi, Greece"@en ;
-  dcterms:date "2024-06-04"^^xsd:date ;
-  rdfs:comment "Published and presented a paper at the European Interdisciplinary Cybersecurity Conference (2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(24.888 41.136)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Xanthi" ;
-  schema:addressCountry "Greece" .
 
-:athens_greece_2024_06_02 rdf:type owl:NamedIndividual , :ResearchVisit ;
-  rdfs:label "Athens, Greece"@en ;
-  dcterms:date "2024-06-02"^^xsd:date ;
-  rdfs:comment "Visited Ubitech in Chalandri (Athens), as part of the DUCA EU project staff exchanges."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(23.7275 37.9838)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Athens" ;
-  schema:addressCountry "Greece" .
+###  https://tomas-bueno-momcilovic.github.io/ontology#valletta_malta_17_19_2024
+:valletta_malta_17_19_2024 rdf:type owl:NamedIndividual ,
+                                    :Conference ;
+                           <http://purl.org/dc/terms/date> "17/19/2024"^^xsd:date ;
+                           <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                <http://www.opengis.net/ont/geosparql#asWKT> "POINT(14.5146 35.8989)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                              ] ;
+                           rdfs:comment "Published and presented a paper at the World Conference on Explainable Artificial Intelligence (XAI 2024)."@en ;
+                           rdfs:label "Valletta, Malta"@en ;
+                           <https://schema.org/addressCountry> "Malta" ;
+                           <https://schema.org/addressLocality> "Valletta" .
 
-:belgrade_serbia_1994 rdf:type owl:NamedIndividual , :PersonalEntry ;
-  rdfs:label "Belgrade, Serbia"@en ;
-  dcterms:date "1994"^^xsd:date ;
-  rdfs:comment "From here!"@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(20.4573 44.7872)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Belgrade" ;
-  schema:addressCountry "Serbia" .
 
-:munich_germany_2020 rdf:type owl:NamedIndividual , :PersonalEntry ;
-  rdfs:label "Munich, Germany"@en ;
-  dcterms:date "2020-"^^xsd:date ;
-  rdfs:comment "Live and work here!"@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(11.582 48.1351)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Munich" ;
-  schema:addressCountry "Germany" .
+###  https://tomas-bueno-momcilovic.github.io/ontology#vienna_austria_2024_04_24
+:vienna_austria_2024_04_24 rdf:type owl:NamedIndividual ,
+                                    :Conference ;
+                           <http://purl.org/dc/terms/date> "2024-04-24"^^xsd:date ;
+                           <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                <http://www.opengis.net/ont/geosparql#asWKT> "POINT(16.3738 48.2082)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                              ] ;
+                           rdfs:comment "Published and presented a paper at the International Software Quality Days (SWQD 2024) conference."@en ;
+                           rdfs:label "Vienna, Austria"@en ;
+                           <https://schema.org/addressCountry> "Austria" ;
+                           <https://schema.org/addressLocality> "Vienna" .
 
-:the_hague_the_netherlands_2023_02_15 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "The Hague, The Netherlands"@en ;
-  dcterms:date "2023-02-15"^^xsd:date ;
-  rdfs:comment "Visited the Summit on Responsible Artificial Intelligence in the Military Domain (REAIM 2023)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(4.3007 52.0705)"^^geo:wktLiteral ] ;
-  schema:addressLocality "The Hague" ;
-  schema:addressCountry "The Netherlands" .
 
-:vienna_austria_2024_04_24 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Vienna, Austria"@en ;
-  dcterms:date "2024-04-24"^^xsd:date ;
-  rdfs:comment "Published and presented a paper at the International Software Quality Days (SWQD 2024) conference."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(16.3738 48.2082)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Vienna" ;
-  schema:addressCountry "Austria" .
+###  https://tomas-bueno-momcilovic.github.io/ontology#wuerzburg_germany_2024_09_19
+:wuerzburg_germany_2024_09_19 rdf:type owl:NamedIndividual ,
+                                       :Conference ;
+                              <http://purl.org/dc/terms/date> "2024-09-19"^^xsd:date ;
+                              <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                   <http://www.opengis.net/ont/geosparql#asWKT> "POINT(9.9534 49.7913)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                 ] ;
+                              rdfs:comment "Published a paper at the AI Act Workshop (Wirtschaftsinformatik conference, 2024)."@en ;
+                              rdfs:label "Wuerzburg, Germany"@en ;
+                              <https://schema.org/addressCountry> "Germany" ;
+                              <https://schema.org/addressLocality> "Wuerzburg" .
 
-:santiago_de_compostela_spain_2024_10_19 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Santiago de Compostela, Spain"@en ;
-  dcterms:date "2024-10-19"^^xsd:date ;
-  rdfs:comment "Published and presented a paper at the International Workshop on AI Value Engineering and AI Compliance Mechanisms (VECOMP; part of ECAI 2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(-8.5448 42.8782)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Santiago de Compostela" ;
-  schema:addressCountry "Spain" .
 
-:florence_italy_2024_09_17 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Florence, Italy"@en ;
-  dcterms:date "2024-09-17"^^xsd:date ;
-  rdfs:comment "Gave a talk at the International Workshop on Artificial Intelligence Safety Engineering (WAISE; part of SAFECOMP 2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(11.2558 43.7696)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Florence" ;
-  schema:addressCountry "Italy" .
+###  https://tomas-bueno-momcilovic.github.io/ontology#xanthi_greece_2024_06_04
+:xanthi_greece_2024_06_04 rdf:type owl:NamedIndividual ,
+                                   :Conference ;
+                          <http://purl.org/dc/terms/date> "2024-06-04"^^xsd:date ;
+                          <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                               <http://www.opengis.net/ont/geosparql#asWKT> "POINT(24.888 41.136)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                             ] ;
+                          rdfs:comment "Published and presented a paper at the European Interdisciplinary Cybersecurity Conference (2024)."@en ;
+                          rdfs:label "Xanthi, Greece"@en ;
+                          <https://schema.org/addressCountry> "Greece" ;
+                          <https://schema.org/addressLocality> "Xanthi" .
 
-:valletta_malta_17_19_2024 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Valletta, Malta"@en ;
-  dcterms:date "17/19/2024"^^xsd:date ;
-  rdfs:comment "Published and presented a paper at the World Conference on Explainable Artificial Intelligence (XAI 2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(14.5146 35.8989)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Valletta" ;
-  schema:addressCountry "Malta" .
 
-:paderborn_germany_2023_09_18 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Paderborn, Germany"@en ;
-  dcterms:date "2023-09-18"^^xsd:date ;
-  rdfs:comment "Published and presented a paper at the Workshop on Current Information Security and Compliance Issues in Information Systems Research (Wirtschaftsinformatik conference, 2023)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(8.7575 51.7189)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Paderborn" ;
-  schema:addressCountry "Germany" .
+###  https://tomas-bueno-momcilovic.github.io/ontology#zurich_switzerland_2024_07_30
+:zurich_switzerland_2024_07_30 rdf:type owl:NamedIndividual ,
+                                        :ResearchVisit ;
+                               <http://purl.org/dc/terms/date> "2024-07-30"^^xsd:date ;
+                               <http://www.opengis.net/ont/geosparql#hasGeometry> [ rdf:type <http://www.opengis.net/ont/geosparql#Geometry> ;
+                                                                                    <http://www.opengis.net/ont/geosparql#asWKT> "POINT(8.5417 47.3769)"^^<http://www.opengis.net/ont/geosparql#wktLiteral>
+                                                                                  ] ;
+                               rdfs:comment "Workshop with colleagues from IBM Research Switzerland and Ireland."@en ;
+                               rdfs:label "Zurich, Switzerland"@en ;
+                               <https://schema.org/addressCountry> "Switzerland" ;
+                               <https://schema.org/addressLocality> "Zurich" .
 
-:paris_france_2023_03_08 rdf:type owl:NamedIndividual , :ResearchVisit ;
-  rdfs:label "Paris, France"@en ;
-  dcterms:date "2023-03-08"^^xsd:date ;
-  rdfs:comment "Plenary meeting with the colleagues from the Digital Innovation Hubs 4 AI (DIH4AI) EU project."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(2.3514 48.8575)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Paris" ;
-  schema:addressCountry "France" .
-
-:zurich_switzerland_2024_07_30 rdf:type owl:NamedIndividual , :ResearchVisit ;
-  rdfs:label "Zurich, Switzerland"@en ;
-  dcterms:date "2024-07-30"^^xsd:date ;
-  rdfs:comment "Workshop with colleagues from IBM Research Switzerland and Ireland."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(8.5417 47.3769)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Zurich" ;
-  schema:addressCountry "Switzerland" .
-
-:berlin_germany_2023_03_30 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Berlin, Germany"@en ;
-  dcterms:date "2023-03-30"^^xsd:date ;
-  rdfs:comment "Participated in, and gave a talk at, the AI Safety Europe Retreat (AISER)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(13.405 52.52)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Berlin" ;
-  schema:addressCountry "Germany" .
-
-:brussels_belgium_2024_10_01 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Brussels, Belgium"@en ;
-  dcterms:date "2024-10-01"^^xsd:date ;
-  rdfs:comment "Gave a talk on LLMs and adversarial robustness at the ENISA Cyber Threat Intelligence Conference (2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(4.3572 50.8477)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Brussels" ;
-  schema:addressCountry "Belgium" .
-
-:wuerzburg_germany_2024_09_19 rdf:type owl:NamedIndividual , :Conference ;
-  rdfs:label "Wuerzburg, Germany"@en ;
-  dcterms:date "2024-09-19"^^xsd:date ;
-  rdfs:comment "Published a paper at the AI Act Workshop (Wirtschaftsinformatik conference, 2024)."@en ;
-  geo:hasGeometry [ a geo:Geometry ;
-                   geo:asWKT "POINT(9.9534 49.7913)"^^geo:wktLiteral ] ;
-  schema:addressLocality "Wuerzburg" ;
-  schema:addressCountry "Germany" .
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
